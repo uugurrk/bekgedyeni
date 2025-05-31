@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>BEKGED</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>
+            <img src="bekged.png" alt="BEKGED Logo" />
+            <span>BEKGED</span>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="#ana">Ana Sayfa</a></li>
+                <li>
+                    <a href="javascript:void(0);" class="disabled-link">Hakkımızda</a>
+                    <ul class="alt-menu">
+                        <li><a href="#yonetim-kurulu">Yönetim Kurulu</a></li>
+                        <li><a href="#gonulluler">Gönüllüler</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="disabled-link">Projelerimiz</a>
+                    <ul class="alt-menu">
+                        <li><a href="#devam">Devam Eden</a></li>
+                        <li><a href="#tamam">Tamamlanan</a></li>
+                        <li><a href="#basvuruya-acik">Başvuruya Açık</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tum-duyurular">Duyurular</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+                <li><a href="#bagis">Bağış</a></li>
+            </ul>
+        </nav>
+        <div class="sosyal-butonlar">
+            <a href="https://www.instagram.com/bekgedernegi" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/bekgedernegi" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://whatsapp.com/channel/0029VaGOdZJ35fLqypFjCY3V" target="_blank"><i
+                    class="fab fa-whatsapp"></i></a>
+            <a href="mailto:bekgeddernegi@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <div id="ustBaslik" class="section-header"></div>
+
+    <main>
+        <section id="ana" class="sayfa">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Ana Sayfa</h2>
+                    <p id="anaSayfaMetinIcerik">BEKGED, Avrupa'nın dört bir yanındaki gençlik projelerine katkı sağlayan
+                        bir sivil toplum kuruluşudur...</p>
+
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="amaclarimiz" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Hakkımızda</h2>
+                    <p>
+                        BEKGED olarak temel amacımız, gençlerin potansiyellerini
+                        keşfetmelerine ve geliştirmelerine yardımcı olmaktır. Avrupa
+                        genelinde gençlik projeleri yürüterek kültürel alışverişi
+                        teşvik ediyor, yeni beceriler kazanmalarını sağlıyor ve
+                        toplumsal katılımlarını artırıyoruz. Her gencin parlak bir
+                        geleceği hak ettiğine inanıyoruz ve bu yolda onlara rehberlik
+                        etmekten gurur duyuyoruz. Projelerimiz, yenilikçilik,
+                        kapsayıcılık ve sürdürülebilirlik ilkeleri üzerine kuruludur.
+                    </p>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="devam" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Devam Eden Projeler</h2>
+                    <div class="proje-kartlari" id="devam-projeler-listesi">
+                    </div>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="tamam" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Tamamlanan Projeler</h2>
+                    <div class="proje-kartlari" id="tamam-projeler-listesi">
+                    </div>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="basvuruya-acik" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Başvuruya Açık Projeler</h2>
+                    <div class="proje-kartlari" id="basvuruya-acik-projeler-listesi">
+                    </div>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+        <section id="tum-duyurular" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Tüm Duyurular</h2>
+                    <div id="tum-duyurular-icerik">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeri" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Galeri</h2>
+                    <div class="galeri-container" id="galeri-resimler-container">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="iletisim" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">İletişim</h2>
+                    <p>Adres: Mimar Sinan Mahallesi Tavukçu Bakkal Sokak No: 6 Kat: 3 Ofis: 15 Üsküdar, Istanbul, Turkey
+                    </p>
+                    <p>Telefon: ...</p>
+                    <p>E-posta: bekgeddernegi@gmail.com</p>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="bagis" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Bağış</h2>
+                    <p>Bağış yapmak isterseniz aşağıdaki IBAN'ı kullanabilirsin.</p>
+                    <p><strong>Banka Hesabı Bilgileri:</strong><br><br>
+                        Hesap Sahibi: BOĞAZİÇİ EĞİTİM KÜLTÜR VE GELİŞİM DERNEĞİ<br><br>
+                        IBAN: TR36 0001 0004 0397 6956 9350 01<br><br>
+                        Banka Adı: T.C. Ziraat Bankası<br><br>
+                        Şube: Üsküdar/İstanbul</p>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="yonetim-kurulu" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Yönetim Kurulu</h2>
+                    <div class="proje-kartlari">
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Begüm İntepeler - Başkan</div>
+                                <div class="yonetim-kurulu-icerik">
+                                    <img src="https://i.ibb.co/3k3L2Jk/begum.jpg" alt="Begüm İntepeler Fotoğrafı">
+                                    <p>İzmir Ekonomi Üniversitesi Halkla İlişkiler ve Reklamcılık Bölümü'nü bitirdi. İki
+                                        ortağı ile birlikte kurduğu dijital reklam ajansıyla İzmir'deki yerel
+                                        yönetimlere ve özel şirketlere kurumsal iletişim hizmeti sunuyor. Sivil toplum
+                                        kapasite geliştirme konusunda çalışmalarını sürdürüyor. Pi Gençlik Derneği'nin
+                                        yereldeki kamu kurumları ve ortaklıklarından sorumludur.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Şermin Topal - Başkan Yrd.</div>
+                                <div class="yonetim-kurulu-icerik">
+                                    <img src="https://i.ibb.co/L901D9q/sermin.jpg" alt="Şermin Topal Fotoğrafı">
+                                    <p>Dokuz Eylül Üniversitesi Çalışma Ekonomisi ve Endüstri İlişkileri bölümü
+                                        mezunudur. Gönüllülük çalışmalarına Lösev İzmir'de başlayan Şermin daha sonra bu
+                                        çalışmalarına gençlik alanında devam etme kararı almıştır. Farklı kurumsal
+                                        firmalarda müşteri ilişkileri yönetiminde görev aldıktan sonra şu anda yine özel
+                                        sektörde satış sorumlusu olarak çalışmaya devam etmektedir.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Yönetim Kurulu Üyesi 3</div>
+                                <div class="yonetim-kurulu-icerik">
+                                    <img src="https://via.placeholder.com/300x200?text=Yönetim+Kurulu+Üyesi"
+                                        alt="Yönetim Kurulu Üyesi Fotoğrafı">
+                                    <p>Bu, Yönetim Kurulu Üyesi 3 hakkında bir açıklama metnidir. Burayı dilediğiniz
+                                        gibi düzenleyebilirsiniz.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Yönetim Kurulu Üyesi 4</div>
+                                <div class="yonetim-kurulu-icerik">
+                                    <img src="https://via.placeholder.com/300x200?text=Yönetim+Kurulu+Üyesi"
+                                        alt="Yönetim Kurulu Üyesi Fotoğrafı">
+                                    <p>Bu, Yönetim Kurulu Üyesi 4 hakkında bir açıklama metnidir. Burayı dilediğiniz
+                                        gibi düzenleyebilirsiniz.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Yönetim Kurulu Üyesi 5</div>
+                                <div class="yonetim-kurulu-icerik">
+                                    <img src="https://via.placeholder.com/300x200?text=Yönetim+Kurulu+Üyesi"
+                                        alt="Yönetim Kurulu Üyesi Fotoğrafı">
+                                    <p>Bu, Yönetim Kurulu Üyesi 5 hakkında bir açıklama metnidir. Burayı dilediğiniz
+                                        gibi düzenleyebilirsiniz.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+
+        <section id="gonulluler" class="sayfa gizli">
+            <div class="icerik-ve-duyuru">
+                <div class="yazi-uzerinde">
+                    <h2 class="hidden-h2">Gönüllüler</h2>
+                    <div class="proje-kartlari">
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Gönüllü Adı Soyadı 1</div>
+                                <p>Bu, Gönüllü 1 hakkında bir açıklama metnidir. Burayı dilediğiniz gibi
+                                    düzenleyebilirsiniz.</p>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Gönüllü Adı Soyadı 2</div>
+                                <p>Bu, Gönüllü 2 hakkında bir açıklama metnidir. Burayı dilediğiniz gibi
+                                    düzenleyebilirsiniz.</p>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Gönüllü Adı Soyadı 3</div>
+                                <p>Bu, Gönüllü 3 hakkında bir açıklama metnidir. Burayı dilediğiniz gibi
+                                    düzenleyebilirsiniz.</p>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Gönüllü Adı Soyadı 4</div>
+                                <p>Bu, Gönüllü 4 hakkında bir açıklama metnidir. Burayı dilediğiniz gibi
+                                    düzenleyebilirsiniz.</p>
+                            </a>
+                        </div>
+                        <div class="proje-karti">
+                            <a href="#">
+                                <div class="proje-baslik">Gönüllü Adı Soyadı 5</div>
+                                <p>Bu, Gönüllü 5 hakkında bir açıklama metnidir. Burayı dilediğiniz gibi
+                                    düzenleyebilirsiniz.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="duyurular-sabiti-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 BEKGED - Tüm hakları saklıdır.
+    </footer>
+
+    <div id="imageModal" class="modal-overlay">
+        <span class="modal-close-btn">&times;</span>
+        <div class="modal-content">
+            <div class="modal-image-wrapper">
+                <img id="modalImage" src="" alt="Büyük Resim">
+                <div class="modal-description-strip">
+                    <p id="modalDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = window.location.hostname.includes("localhost") ?
+            "http://localhost:3000/api" : "https://api.bekged.org/api"; // API adresini doğru ayarlayın
+
+        const ustBaslikElement = document.getElementById("ustBaslik");
+
+        const basliklar = {
+            ana: "ANA SAYFA",
+            amaclarimiz: "HAKKIMIZDA",
+            "yonetim-kurulu": "YÖNETİM KURULU",
+            "gonulluler": "GÖNÜLLÜLER",
+            ekibimiz: "EKİBİMİZ",
+            tarihce: "TARİHÇE",
+            "tum-duyurular": "TÜM DUYURULAR",
+            devam: "DEVAM EDEN PROJELER",
+            tamam: "TAMAMLANAN PROJELER",
+            "basvuruya-acik": "BAŞVURUYA AÇIK PROJELER",
+            galeri: "GALERİ",
+            iletisim: "İLETİŞİM",
+            bagis: "BAĞIŞ"
+        };
+
+        function showMessage(message, type = 'info') {
+            console.error(`[${type.toUpperCase()}] ${message}`);
+        }
+
+        function sayfaGoster(id) {
+            document.querySelectorAll(".sayfa").forEach(s => s.classList.add("gizli"));
+            const targetSection = document.getElementById(id);
+
+            if (targetSection) {
+                targetSection.classList.remove("gizli");
+                ustBaslikElement.textContent = basliklar[id] || "BEKGED";
+            } else {
+                console.warn(`Hedef sayfa bulunamadı: #${id}. Ana sayfaya yönlendiriliyor veya başlık varsayılana ayarlanıyor.`);
+                // Eğer sayfa yoksa ana sayfayı göster veya özel bir "bulunamadı" sayfası
+                const anaSayfa = document.getElementById('ana');
+                if (anaSayfa) anaSayfa.classList.remove("gizli");
+                ustBaslikElement.textContent = basliklar['ana'] || "BEKGED"; // Ana sayfa başlığı
+            }
+            // verileriYukle() çağrısını sadece sayfaGoster içinde, sayfa gerçekten gösterildikten sonra yap.
+            // Ve sadece o an aktif olan sayfanın ID'sini geç.
+            verileriYukle(id);
+        }
+
+        async function verileriYukle(currentActivePageId) {
+            try {
+                const res = await fetch(`${API_BASE_URL}/data`);
+                if (!res.ok) {
+                    const errorData = await res.text();
+                    throw new Error(`Veriler yüklenemedi: ${res.status} ${res.statusText} - ${errorData}`);
+                }
+                const data = await res.json();
+
+                const anaSayfaMetinDiv = document.getElementById("anaSayfaMetinIcerik");
+                if (anaSayfaMetinDiv) {
+                    anaSayfaMetinDiv.textContent = data.anasayfa || "BEKGED, Avrupa'nın dört bir yanındaki gençlik projelerine katkı sağlayan bir sivil toplum kuruluşudur...";
+                }
+
+                // Galeri sadece galeri sayfasında ve bir kez yüklenmeli
+                if (currentActivePageId === 'galeri') {
+                    const galeriContainer = document.getElementById("galeri-resimler-container");
+                    if (galeriContainer) {
+                        galeriContainer.innerHTML = ""; // Her seferinde temizle ve yeniden oluştur
+                        if (data.galeri && Array.isArray(data.galeri)) {
+                            data.galeri.forEach(gorsel => {
+                                if (gorsel && gorsel.url) {
+                                    const div = document.createElement("div");
+                                    div.className = "galeri-item";
+                                    // data- attributes gereksiz çünkü click handler doğrudan gorsel objesini kullanacak
+                                    // div.setAttribute('data-url', gorsel.url); 
+                                    // div.setAttribute('data-aciklama', gorsel.aciklama || "");
+
+                                    const img = document.createElement("img");
+                                    img.src = gorsel.url;
+                                    img.alt = gorsel.aciklama || "Galeri Resmi";
+                                    div.appendChild(img);
+
+                                    div.addEventListener('click', () => {
+                                        openImageModal(gorsel.url, gorsel.aciklama || "");
+                                    });
+                                    galeriContainer.appendChild(div);
+                                }
+                            });
+                        }
+                    }
+                }
+
+
+                data.duyurular.sort((a, b) => new Date(b.tarih) - new Date(a.tarih));
+
+                // Sidebar duyurularını her zaman güncelle (tüm sayfalarda görünebilir)
+                document.querySelectorAll(".duyurular-sabiti-container").forEach(container => {
+                    const latestDuyurular = data.duyurular.slice(0, 3);
+                    const html = latestDuyurular.map((d) => `
+                        <div class="duyuru-karti">
+                            <div class="duyuru-tarih">${d.tarih}</div>
+                            <a href="#duyuru-${d.id}">${d.baslik}</a>
+                        </div>`).join("");
+                    container.innerHTML = `
+                        <aside class="duyurular">
+                            <h3><a href="#tum-duyurular" class="duyurular-baslik-link">Duyurular</a></h3> ${html}
+                        </aside>
+                    `;
+                });
+
+                // Tüm duyurular sayfasını sadece o sayfa aktifse güncelle
+                if (currentActivePageId === 'tum-duyurular') {
+                    const tumDuyurularIcerik = document.getElementById("tum-duyurular-icerik");
+                    if (tumDuyurularIcerik) {
+                        let allDuyurularHtml = '';
+                        data.duyurular.forEach((d) => {
+                            allDuyurularHtml += `
+                                <div class="duyuru-karti">
+                                    <div class="duyuru-tarih">${d.tarih}</div>
+                                    <a href="#duyuru-${d.id}">${d.baslik}</a>
+                                </div>`;
+                        });
+                        tumDuyurularIcerik.innerHTML = allDuyurularHtml;
+                    }
+                }
+
+                // Dinamik duyuru detay sayfalarını oluştur/güncelle (her zaman mevcut olmalı)
+                data.duyurular.forEach((d) => {
+                    const id = "duyuru-" + d.id;
+                    let section = document.getElementById(id);
+                    if (!section) {
+                        section = document.createElement("section");
+                        section.id = id;
+                        section.className = "sayfa gizli"; // Başlangıçta gizli
+                        document.querySelector('main').appendChild(section);
+                    }
+                    // Sadece aktif duyuru sayfasının içeriğini doldur veya her zaman doldur ve CSS ile gizle/göster
+                    section.innerHTML = `
+                        <div class="icerik-ve-duyuru">
+                            <div class="yazi-uzerinde">
+                                <h2 class="hidden-h2">${d.baslik}</h2>
+                                <h3>${d.baslik}</h3>
+                                <p class="duyuru-tarih-detay">Yayın Tarihi: ${d.tarih}</p>
+                                <p>${d.detay || "Detay bulunmamaktadır..."}</p>
+                            </div>
+                            <div class="duyurular-sabiti-container"></div>
+                        </div>`;
+                    basliklar[id] = d.baslik.toUpperCase();
+                });
+
+                // Proje listelerini ve detaylarını oluştur/güncelle (her zaman mevcut olmalı)
+                const devamDiv = document.getElementById("devam-projeler-listesi");
+                const tamamDiv = document.getElementById("tamam-projeler-listesi");
+                const basvuruyaAcikDiv = document.getElementById("basvuruya-acik-projeler-listesi");
+
+                if (devamDiv) devamDiv.innerHTML = "";
+                if (tamamDiv) tamamDiv.innerHTML = "";
+                if (basvuruyaAcikDiv) basvuruyaAcikDiv.innerHTML = "";
+
+                data.projeler.forEach((p) => {
+                    const id = "proje-" + p.id;
+                    const kart = document.createElement("div");
+                    kart.className = "proje-karti";
+                    kart.innerHTML = `<a href="#${id}"><div class="proje-baslik">${p.baslik}</div></a>`;
+
+                    if (p.tur === "devam" && devamDiv) devamDiv.appendChild(kart);
+                    else if (p.tur === "tamam" && tamamDiv) tamamDiv.appendChild(kart);
+                    else if (p.tur === "basvuruya-acik" && basvuruyaAcikDiv) basvuruyaAcikDiv.appendChild(kart); // Corrected value
+
+                    let detaySection = document.getElementById(id);
+                    if (!detaySection) {
+                        detaySection = document.createElement("section");
+                        detaySection.id = id;
+                        detaySection.className = "sayfa gizli";
+                        document.querySelector('main').appendChild(detaySection);
+                    }
+                    detaySection.innerHTML = `
+                        <div class="icerik-ve-duyuru">
+                            <div class="yazi-uzerinde">
+                                <h2 class="hidden-h2">${p.baslik}</h2>
+                                <h3>${p.baslik}</h3>
+                                <p>${p.detay || "Proje detayı bulunmamaktadır..."}</p>
+                                ${p.basvuruLink ? `<p><a href="${p.basvuruLink}" target="_blank" class="basvuru-linki">Projeye Başvur!</a></p>` : ''}
+                            </div>
+                            <div class="duyurular-sabiti-container"></div>
+                        </div>`;
+                    basliklar[id] = p.baslik.toUpperCase();
+                });
+
+                // Sidebar görünürlüğünü ayarla (dinamik bölümler oluşturulduktan sonra)
+                document.querySelectorAll(".sayfa").forEach(section => {
+                    const sectionId = section.id;
+                    const sidebarContainer = section.querySelector('.duyurular-sabiti-container');
+                    if (sidebarContainer) {
+                        // Sadece aktif olan sayfa için sidebar görünürlüğünü dinamik olarak ayarla
+                        if (sectionId === currentActivePageId) {
+                            if (sectionId === 'tum-duyurular' || sectionId.startsWith('duyuru-') || sectionId === 'galeri') {
+                                sidebarContainer.style.display = 'none';
+                            } else {
+                                sidebarContainer.style.display = 'block'; // Veya flex, initial vs.
+                            }
+                        } else {
+                            // Aktif olmayan sayfaların sidebar'ı CSS tarafından yönetilmeli (.gizli class'ı ile)
+                            // Ama eğer explicit olarak display:none yapılmışsa, bunu koruyabiliriz.
+                            // Genelde .gizli class'ı section'ı komple gizlediği için sorun olmamalı.
+                        }
+                    }
+                });
+
+
+                // Link event listener'larını yeniden bağla (önce kaldır sonra ekle)
+                document.querySelectorAll("nav ul li a, .duyuru-karti a, .proje-karti a").forEach(link => {
+                    if (!link.classList.contains('disabled-link')) {
+                        link.removeEventListener("click", handleLinkClick);
+                        link.addEventListener("click", handleLinkClick);
+                    }
+                });
+
+                // Eğer başlangıçta hash varsa ve bu dinamik bir sayfa ise (proje/duyuru detayı),
+                // ve sayfaGoster bunu henüz açmadıysa (çünkü DOM'da yoktu), şimdi aç.
+                // Bu kısım biraz karmaşıklaşabilir, sayfaGoster'in sonundaki verileriYukle çağrısı genellikle yeterli olmalı.
+                if (currentActivePageId && currentActivePageId !== 'ana' && document.getElementById(currentActivePageId) && document.getElementById(currentActivePageId).classList.contains('gizli')) {
+                    // sayfaGoster(currentActivePageId) tekrar çağrılabilir ama sonsuz döngü riski var.
+                    // En iyisi sayfaGoster'in sonunda verileriYukle'yi çağırmak ve onun DOM'u hazırlamasını beklemek.
+                }
+
+
+            } catch (err) {
+                console.error("Veriler yüklenemedi veya işlenemedi:", err);
+                showMessage(`Veriler yüklenirken bir hata oluştu. API sunucusunu kontrol edin. Hata: ${err.message}`, "error");
+            }
+        }
+
+        function handleLinkClick(e) {
+            const link = e.currentTarget;
+            const href = link.getAttribute("href");
+            if (href && href.startsWith("#")) {
+                e.preventDefault();
+                const hedefId = href.substring(1);
+
+                // Hedef bölümün var olup olmadığını kontrol etmeden önce verileri yükle,
+                // çünkü hedef bölüm dinamik olarak oluşturuluyor olabilir (proje-X, duyuru-X)
+                // verileriYukle(hedefId).then(() => { // verileriYukle şimdi sayfaGoster içinde çağrılıyor.
+                sayfaGoster(hedefId);
+                window.location.hash = hedefId;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // });
+            }
+        }
+
+        const imageModalEl = document.getElementById('imageModal');
+        const modalImageEl = document.getElementById('modalImage');
+        const modalDescriptionEl = document.getElementById('modalDescription');
+        // Close button is now a direct child of imageModalEl
+        const closeModalBtnEl = imageModalEl ? imageModalEl.querySelector('.modal-close-btn') : null;
+
+
+        function openImageModal(url, aciklama) {
+            if (imageModalEl && modalImageEl && modalDescriptionEl) {
+                modalImageEl.src = url;
+                modalDescriptionEl.textContent = aciklama || "";
+                imageModalEl.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            }
+        }
+
+        function closeImageModal() {
+            if (imageModalEl) {
+                imageModalEl.classList.remove('active');
+                document.body.style.overflow = ''; // Restore background scroll
+            }
+        }
+
+        if (closeModalBtnEl) {
+            closeModalBtnEl.addEventListener('click', closeImageModal);
+        }
+        if (imageModalEl) {
+            // Sadece overlay'e tıklanınca kapat (content veya image değil)
+            imageModalEl.addEventListener('click', (event) => {
+                if (event.target === imageModalEl) {
+                    closeImageModal();
+                }
+            });
+        }
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && imageModalEl && imageModalEl.classList.contains('active')) {
+                closeImageModal();
+            }
+        });
+
+
+        window.onload = () => {
+            const initialHash = window.location.hash.substring(1);
+            // sayfaGoster'i doğrudan çağır, o da verileriYukle'yi çağıracak.
+            if (initialHash) {
+                sayfaGoster(initialHash);
+            } else {
+                sayfaGoster('ana');
+            }
+        };
+
+        window.addEventListener('popstate', (event) => {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                sayfaGoster(hash);
+            } else {
+                sayfaGoster('ana');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Yönetim Paneli</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 2rem;
+            background: #f0f0f0;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0077a6;
+        }
+
+        .form-grup {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background-color: #0077a6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005f88;
+        }
+
+        .liste-kapsayici div {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            word-break: break-all;
+            /* Prevent long URLs/text from breaking layout */
+        }
+
+        .liste-kapsayici div span {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+
+        .sil-buton {
+            background-color: #dc3545;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            /* Prevent button from shrinking */
+        }
+
+        .sil-buton:hover {
+            background-color: #c82333;
+        }
+
+        .mesaj {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .mesaj.basari {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .mesaj.hata {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Galeri Önizleme */
+        .galeri-onizleme {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .galeri-onizleme img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BEKGED Yönetim Paneli</h1>
+
+    <div id="mesaj-kutusu" class="mesaj" style="display: none;"></div>
+
+    <div class="form-grup">
+        <h2>Ana Sayfa Metni Düzenle</h2>
+        <label for="anasayfaMetni">Ana Sayfa Metni:</label>
+        <textarea id="anasayfaMetni" rows="10"></textarea>
+        <button onclick="anasayfaMetniKaydet()">Kaydet</button>
+    </div>
+
+    <div class="form-grup">
+        <h2>Yeni Proje Ekle</h2>
+        <label for="projeBaslik">Başlık:</label>
+        <input type="text" id="projeBaslik" />
+
+        <label for="projeTur">Tür:</label>
+        <select id="projeTur">
+            <option value="devam">Devam Eden</option>
+            <option value="tamam">Tamamlanan</option>
+            <option value="basvuruya-acik">Başvuruya Açık</option>
+        </select>
+
+        <label for="projeDetay">Detay:</label>
+        <textarea id="projeDetay" rows="5"></textarea>
+
+        <label for="projeBasvuruLink">Başvuru Linki (isteğe bağlı):</label>
+        <input type="url" id="projeBasvuruLink" />
+
+        <button onclick="projeEkle()">Proje Ekle</button>
+    </div>
+
+    <div class="form-grup">
+        <h2>Mevcut Projeler</h2>
+        <div class="liste-kapsayici" id="projeler-listesi">
+        </div>
+    </div>
+
+    <div class="form-grup">
+        <h2>Yeni Duyuru Ekle</h2>
+        <label for="duyuruBaslik">Başlık:</label>
+        <input type="text" id="duyuruBaslik" />
+
+        <label for="duyuruTarih">Tarih:</label>
+        <input type="date" id="duyuruTarih" />
+
+        <label for="duyuruDetay">Detay:</label>
+        <textarea id="duyuruDetay" rows="5"></textarea>
+
+        <button onclick="duyuruEkle()">Duyuru Ekle</button>
+    </div>
+
+    <div class="form-grup">
+        <h2>Mevcut Duyurular</h2>
+        <div class="liste-kapsayici" id="duyurular-listesi">
+        </div>
+    </div>
+
+    <div class="form-grup">
+        <h2>Görsel Yönetimi</h2>
+        <h3>Yeni Görsel Ekle</h3>
+        <label for="gorselUrl">Görsel URL:</label>
+        <input type="text" id="gorselUrl" placeholder="Görselin tam URL'sini girin" />
+
+        <label for="gorselAciklama">Açıklama:</label>
+        <textarea id="gorselAciklama" rows="3" placeholder="Görsel için kısa bir açıklama (isteğe bağlı)"></textarea>
+
+        <button onclick="gorselEkle()">Görsel Ekle</button>
+
+        <h3>Mevcut Görseller</h3>
+        <div class="liste-kapsayici" id="galeri-listesi">
+        </div>
+    </div>
+
+
+    <script>
+        const API_BASE_URL = "http://localhost:3000/api"; // API sunucunuzun adresi
+
+        function showMessage(message, type = "basari") {
+            const mesajKutusu = document.getElementById("mesaj-kutusu");
+            mesajKutusu.textContent = message;
+            mesajKutusu.className = `mesaj ${type}`;
+            mesajKutusu.style.display = "block";
+            setTimeout(() => {
+                mesajKutusu.style.display = "none";
+            }, 5000);
+        }
+
+        async function anasayfaMetniKaydet() {
+            const anasayfaMetni = document.getElementById("anasayfaMetni").value;
+            try {
+                const response = await fetch(`${API_BASE_URL}/anasayfa`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        metin: anasayfaMetni
+                    }),
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP hata kodu: ${response.status}`);
+                }
+                const data = await response.json();
+                showMessage("Ana sayfa metni başarıyla güncellendi!");
+            } catch (err) {
+                console.error("Ana sayfa metni güncellenirken hata oluştu:", err);
+                showMessage(
+                    `Ana sayfa metni güncellenirken bir hata oluştu: ${err.message}`,
+                    "hata"
+                );
+            }
+        }
+
+        async function projeEkle() {
+            const baslik = document.getElementById("projeBaslik").value;
+            const tur = document.getElementById("projeTur").value;
+            const detay = document.getElementById("projeDetay").value;
+            const basvuruLinkInput = document.getElementById("projeBasvuruLink");
+            const basvuruLink = basvuruLinkInput.value.trim() === "" ? null : basvuruLinkInput.value;
+
+
+            if (!baslik || !detay) { // Tür kontrolü de eklenebilir
+                showMessage("Proje başlığı ve detayları boş bırakılamaz.", "hata");
+                return;
+            }
+            if (tur === "basvuruya-acik" && !basvuruLink) { // Eğer başvuruya açıksa link zorunlu olabilir
+                // showMessage("Başvuruya açık projeler için başvuru linki gereklidir.", "hata");
+                // return; 
+                // İsteğe bağlı bırakıldı, yukarıdaki yorumu kaldırıp aktif edebilirsiniz.
+            }
+
+
+            const yeniProje = {
+                baslik,
+                tur,
+                detay,
+                basvuruLink
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/projeler`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(yeniProje),
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP hata kodu: ${response.status} - ${errorText}`);
+                }
+                const eklenenProje = await response.json();
+                showMessage("Proje başarıyla eklendi!");
+                document.getElementById("projeBaslik").value = "";
+                document.getElementById("projeDetay").value = "";
+                document.getElementById("projeBasvuruLink").value = "";
+                adminVerileriYukle(); // Listeyi güncelle
+            } catch (err) {
+                console.error("Proje eklenirken hata oluştu:", err);
+                showMessage(`Proje eklenirken bir hata oluştu: ${err.message}`, "hata");
+            }
+        }
+
+        async function projeSil(id) {
+            if (!confirm("Bu projeyi silmek istediğinizden emin misiniz?")) {
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE_URL}/projeler/${id}`, {
+                    method: "DELETE",
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(
+                        `HTTP hata kodu: ${response.status} - ${errorText}`
+                    );
+                }
+                showMessage("Proje başarıyla silindi.");
+                adminVerileriYukle(); // Listeyi güncelle
+            } catch (err) {
+                console.error("Proje silinirken hata oluştu:", err);
+                showMessage(`Proje silinirken bir hata oluştu: ${err.message}`, "hata");
+            }
+        }
+
+        async function duyuruEkle() {
+            const baslik = document.getElementById("duyuruBaslik").value;
+            const tarih = document.getElementById("duyuruTarih").value;
+            const detay = document.getElementById("duyuruDetay").value;
+
+            if (!baslik || !tarih || !detay) {
+                showMessage("Duyuru başlığı, tarihi ve detayları boş bırakılamaz.", "hata");
+                return;
+            }
+
+            const yeniDuyuru = {
+                baslik,
+                tarih,
+                detay
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/duyurular`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(yeniDuyuru),
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP hata kodu: ${response.status} - ${errorText}`);
+                }
+                const eklenenDuyuru = await response.json();
+                showMessage("Duyuru başarıyla eklendi!");
+                document.getElementById("duyuruBaslik").value = "";
+                document.getElementById("duyuruTarih").value = "";
+                document.getElementById("duyuruDetay").value = "";
+                adminVerileriYukle(); // Listeyi güncelle
+            } catch (err) {
+                console.error("Duyuru eklenirken hata oluştu:", err);
+                showMessage(`Duyuru eklenirken bir hata oluştu: ${err.message}`, "hata");
+            }
+        }
+
+        async function duyuruSil(id) {
+            if (!confirm("Bu duyuruyu silmek istediğinizden emin misiniz?")) {
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE_URL}/duyurular/${id}`, {
+                    method: "DELETE",
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(
+                        `HTTP hata kodu: ${response.status} - ${errorText}`
+                    );
+                }
+                showMessage("Duyuru başarıyla silindi.");
+                adminVerileriYukle(); // Listeyi güncelle
+            } catch (err) {
+                console.error("Duyuru silinirken hata oluştu:", err);
+                showMessage(`Duyuru silinirken bir hata oluştu: ${err.message}`, "hata");
+            }
+        }
+
+        async function gorselEkle() {
+            const url = document.getElementById("gorselUrl").value;
+            const aciklama = document.getElementById("gorselAciklama").value;
+
+            if (!url) {
+                showMessage("Görsel URL'si boş bırakılamaz.", "hata");
+                return;
+            }
+
+            const yeniGorsel = {
+                url,
+                aciklama
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/galeri`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(yeniGorsel),
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP hata kodu: ${response.status} - ${errorText}`);
+                }
+                const eklenenGorsel = await response.json();
+                showMessage("Görsel başarıyla eklendi!");
+                document.getElementById("gorselUrl").value = "";
+                document.getElementById("gorselAciklama").value = "";
+                adminVerileriYukle(); // Listeyi güncelle
+            } catch (err) {
+                console.error("Görsel eklenirken hata oluştu:", err);
+                showMessage(`Görsel eklenirken bir hata oluştu: ${err.message}`, "hata");
+            }
+        }
+
+        async function gorselSil(id) {
+            if (!confirm("Bu görseli silmek istediğinizden emin misiniz?")) {
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE_URL}/galeri/${id}`, {
+                    method: "DELETE",
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(
+                        `HTTP hata kodu: ${response.status} - ${errorText}`
+                    );
+                }
+                showMessage("Görsel başarıyla silindi.");
+                adminVerileriYukle(); // Listeyi güncelle
+            } catch (err) {
+                console.error("Görsel silinirken hata oluştu:", err);
+                showMessage(`Görsel silinirken bir hata oluştu: ${err.message}`, "hata");
+            }
+        }
+
+
+        async function adminVerileriYukle() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/data`);
+                if (!response.ok) {
+                    throw new Error(`HTTP hata kodu: ${response.status}`);
+                }
+                const data = await response.json();
+
+                document.getElementById("anasayfaMetni").value = data.anasayfa;
+
+                const projelerListesi = document.getElementById("projeler-listesi");
+                projelerListesi.innerHTML = "";
+                data.projeler.forEach((proje) => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `
+                        <span>${proje.baslik} (ID: ${proje.id}) - Tür: ${proje.tur}</span>
+                        <button class="sil-buton" onclick="projeSil('${proje.id}')">Sil</button>
+                    `;
+                    projelerListesi.appendChild(div);
+                });
+
+                const duyurularListesi = document.getElementById("duyurular-listesi");
+                duyurularListesi.innerHTML = "";
+                data.duyurular.forEach(duyuru => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `
+                        <span>${duyuru.baslik} (${duyuru.tarih}) (ID: ${duyuru.id})</span>
+                        <button class="sil-buton" onclick="duyuruSil('${duyuru.id}')">Sil</button>
+                    `;
+                    duyurularListesi.appendChild(div);
+                });
+
+                const galeriListesi = document.getElementById("galeri-listesi");
+                galeriListesi.innerHTML = "";
+                if (data.galeri && Array.isArray(data.galeri)) {
+                    data.galeri.forEach((gorsel) => {
+                        const div = document.createElement("div");
+                        const aciklamaSnippet = gorsel.aciklama ? (gorsel.aciklama.substring(0, 30) + (gorsel.aciklama.length > 30 ? '...' : '')) : 'Açıklama yok';
+                        div.innerHTML = `
+                            <span title="${gorsel.aciklama || ''}">
+                                <img src="${gorsel.url}" alt="Galeri Görseli" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; vertical-align: middle;"> 
+                                ${gorsel.url} (ID: ${gorsel.id})<br>
+                                <small style="padding-left: 60px;">Açıklama: ${aciklamaSnippet}</small>
+                            </span>
+                            <button class="sil-buton" onclick="gorselSil('${gorsel.id}')">Sil</button>
+                        `;
+                        galeriListesi.appendChild(div);
+                    });
+                }
+
+
+            } catch (err) {
+                console.error("Mevcut veriler yüklenemedi:", err);
+                showMessage(`Veriler yüklenirken bir hata oluştu. API sunucusunu kontrol edin. Hata: ${err.message}`, "hata");
+            }
+        }
+        window.onload = adminVerileriYukle;
+    </script>
+</body>
+
+</html>
