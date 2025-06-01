@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="tr">
+<script>
+    const sifre = prompt("Yönetici şifresini girin:");
+    if (sifre !== "bekged2025") {
+        alert("Hatalı şifre!");
+        window.location.href = "/";
+    }
+</script>
 
 <head>
     <meta charset="UTF-8" />
@@ -204,11 +211,7 @@
 
 
     <script>
-        const sifre = prompt("Yönetici şifresini girin:");
-        if (sifre !== "bekged2025") {
-            alert("Hatalı şifre!");
-            window.location.href = "/";
-        }
+
         const API_BASE_URL = "https://bekgedyeni.onrender.com/api";
 
 
