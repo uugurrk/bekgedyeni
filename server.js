@@ -111,21 +111,27 @@ app.delete('/api/projeler/:id', async (req, res) => {
     }
 });
 
-// 🔹 YENİ DUYURU EKLE
 app.post('/api/duyurular', async (req, res) => {
     try {
         const { baslik, detay, tarih } = req.body;
+        console.log("Gelen veri:", req.body); // 🔍 GÖNDERİLEN VERİYİ KONTROL ET
+
         if (!baslik || !detay || !tarih) {
             return res.status(400).json({ error: "Gerekli alanlar eksik" });
         }
 
         const duyuru = new Duyuru({ baslik, detay, tarih });
-        await duyuru.save();
-        res.status(201).json(duyuru);
+
+        const kayit = await duyuru.save(); // 🔴 BURADA HATA VARSA LOG GÖRÜNÜR
+        console.log("Duyuru kaydedildi:", kayit);
+
+        res.status(201).json(kayit);
     } catch (err) {
+        console.error("❌ Duyuru eklenemedi:", err); // 🔥 EN ÖNEMLİ SATIR
         res.status(500).json({ error: "Duyuru eklenemedi" });
     }
 });
+
 
 // 🔹 DUYURU SİL
 app.delete('/api/duyurular/:id', async (req, res) => {
