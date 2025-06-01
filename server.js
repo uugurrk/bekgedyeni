@@ -100,16 +100,21 @@ app.post('/api/projeler', async (req, res) => {
     }
 });
 
-// 🔹 PROJE SİL
 app.delete('/api/projeler/:id', async (req, res) => {
+    const id = req.params.id;
+    if (id.length !== 24) {
+        return res.status(400).json({ error: "Geçersiz ID" });
+    }
+
     try {
-        const silinen = await Proje.findByIdAndDelete(req.params.id);
-        if (!silinen) return res.status(404).json({ error: "Proje bulunamadı" });
-        res.json({ message: "Proje silindi" });
+        const sonuc = await Proje.findByIdAndDelete(id);
+        if (!sonuc) return res.status(404).json({ error: "Bulunamadı" });
+        res.json({ message: "Silindi" });
     } catch (err) {
-        res.status(500).json({ error: "Proje silinemedi" });
+        res.status(500).json({ error: "Sunucu hatası" });
     }
 });
+
 
 app.post('/api/duyurular', async (req, res) => {
     try {
@@ -135,14 +140,20 @@ app.post('/api/duyurular', async (req, res) => {
 
 // 🔹 DUYURU SİL
 app.delete('/api/duyurular/:id', async (req, res) => {
+    const id = req.params.id;
+    if (id.length !== 24) {
+        return res.status(400).json({ error: "Geçersiz ID" });
+    }
+
     try {
-        const silinen = await Duyuru.findByIdAndDelete(req.params.id);
-        if (!silinen) return res.status(404).json({ error: "Duyuru bulunamadı" });
-        res.json({ message: "Duyuru silindi" });
+        const sonuc = await Duyuru.findByIdAndDelete(id);
+        if (!sonuc) return res.status(404).json({ error: "Bulunamadı" });
+        res.json({ message: "Silindi" });
     } catch (err) {
-        res.status(500).json({ error: "Duyuru silinemedi" });
+        res.status(500).json({ error: "Sunucu hatası" });
     }
 });
+
 
 // 🔹 GÖRSEL EKLE
 app.post('/api/galeri', async (req, res) => {
@@ -160,24 +171,19 @@ app.post('/api/galeri', async (req, res) => {
 
 app.delete('/api/galeri/:id', async (req, res) => {
     const id = req.params.id;
-
-    // Geçerli bir ObjectId mi kontrol et
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "Geçersiz ID formatı" });
+    if (id.length !== 24) {
+        return res.status(400).json({ error: "Geçersiz ID" });
     }
 
     try {
-        const silinen = await Gorsel.findByIdAndDelete(id);
-        if (!silinen) {
-            return res.status(404).json({ error: "Görsel bulunamadı" });
-        }
-
-        res.json({ message: "Görsel silindi" });
+        const sonuc = await Gorsel.findByIdAndDelete(id);
+        if (!sonuc) return res.status(404).json({ error: "Bulunamadı" });
+        res.json({ message: "Silindi" });
     } catch (err) {
-        console.error("Görsel silinemedi:", err);
-        res.status(500).json({ error: "Görsel silinemedi" });
+        res.status(500).json({ error: "Sunucu hatası" });
     }
 });
+
 
 // SUNUCUYU BAŞLAT
 app.listen(PORT, () => {

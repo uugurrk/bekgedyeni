@@ -301,27 +301,20 @@
             }
         }
 
-        async function projeSil(id) {
-            if (!confirm("Bu projeyi silmek istediğinizden emin misiniz?")) {
-                return;
-            }
-            try {
-                const response = await fetch(`${API_BASE_URL}/projeler/${id}`, {
-                    method: "DELETE",
+        function projeSil(id) {
+            fetch(`${API_BASE_URL}/projeler/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error("Silinemedi");
+                    alert("Silindi!");
+                    location.reload();
+                })
+                .catch(err => {
+                    alert("Hata: " + err.message);
                 });
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(
-                        `HTTP hata kodu: ${response.status} - ${errorText}`
-                    );
-                }
-                showMessage("Proje başarıyla silindi.");
-                adminVerileriYukle(); // Listeyi güncelle
-            } catch (err) {
-                console.error("Proje silinirken hata oluştu:", err);
-                showMessage(`Proje silinirken bir hata oluştu: ${err.message}`, "hata");
-            }
         }
+
 
         async function duyuruEkle() {
             const baslik = document.getElementById("duyuruBaslik").value;
@@ -363,27 +356,20 @@
             }
         }
 
-        async function duyuruSil(id) {
-            if (!confirm("Bu duyuruyu silmek istediğinizden emin misiniz?")) {
-                return;
-            }
-            try {
-                const response = await fetch(`${API_BASE_URL}/duyurular/${id}`, {
-                    method: "DELETE",
+        function duyuruSil(id) {
+            fetch(`${API_BASE_URL}/duyurular/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error("Silinemedi");
+                    alert("Silindi!");
+                    location.reload();
+                })
+                .catch(err => {
+                    alert("Hata: " + err.message);
                 });
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(
-                        `HTTP hata kodu: ${response.status} - ${errorText}`
-                    );
-                }
-                showMessage("Duyuru başarıyla silindi.");
-                adminVerileriYukle(); // Listeyi güncelle
-            } catch (err) {
-                console.error("Duyuru silinirken hata oluştu:", err);
-                showMessage(`Duyuru silinirken bir hata oluştu: ${err.message}`, "hata");
-            }
         }
+
 
         async function gorselEkle() {
             const url = document.getElementById("gorselUrl").value;
@@ -422,29 +408,20 @@
             }
         }
 
-        async function gorselSil(id) {
-            if (!confirm("Bu görseli silmek istediğinizden emin misiniz?")) {
-                return;
-            }
-            try {
-                const response = await fetch(`${API_BASE_URL}/galeri/${id}`, {
-                    method: "DELETE",
+        function gorselSil(id) {
+            fetch(`${API_BASE_URL}/galeri/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error("Silinemedi");
+                    alert("Silindi!");
+                    location.reload();
+                })
+                .catch(err => {
+                    alert("Hata: " + err.message);
                 });
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(
-                        `HTTP hata kodu: ${response.status} - ${errorText}`
-                    );
-                }
-                showMessage("Görsel başarıyla silindi.");
-                adminVerileriYukle(); // Listeyi güncelle
-            } catch (err) {
-                console.error("Görsel silinirken hata oluştu:", err);
-                showMessage(`Görsel silinirken bir hata oluştu: ${err.message}`, "hata");
-                console.log("Silinecek ID:", id);
-
-            }
         }
+
 
 
         async function adminVerileriYukle() {
