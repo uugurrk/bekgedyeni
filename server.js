@@ -158,13 +158,23 @@ app.post('/api/galeri', async (req, res) => {
     }
 });
 
-// 🔹 GÖRSEL SİL
 app.delete('/api/galeri/:id', async (req, res) => {
+    const id = req.params.id;
+
+    // Geçerli bir ObjectId mi kontrol et
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: "Geçersiz ID formatı" });
+    }
+
     try {
-        const silinen = await Gorsel.findByIdAndDelete(req.params.id);
-        if (!silinen) return res.status(404).json({ error: "Görsel bulunamadı" });
+        const silinen = await Gorsel.findByIdAndDelete(id);
+        if (!silinen) {
+            return res.status(404).json({ error: "Görsel bulunamadı" });
+        }
+
         res.json({ message: "Görsel silindi" });
     } catch (err) {
+        console.error("Görsel silinemedi:", err);
         res.status(500).json({ error: "Görsel silinemedi" });
     }
 });
