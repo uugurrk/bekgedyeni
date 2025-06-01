@@ -204,6 +204,11 @@
 
 
     <script>
+        const sifre = prompt("Yönetici şifresini girin:");
+        if (sifre !== "bekged2025") {
+            alert("Hatalı şifre!");
+            window.location.href = "/";
+        }
         const API_BASE_URL = "https://bekgedyeni.onrender.com/api";
 
 
